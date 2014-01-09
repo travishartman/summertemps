@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,700italic' rel='stylesheet' type='text/css'>
+		<meta charset="utf-8">
+		<title>D3 Experiment</title>
+		<script type="text/javascript" src="../d3/d3.v3.js"></script>
+		<style type="text/css">
+			.axis path,
+			.axis line {
+			    fill: none;
+			    stroke: black;
+			    shape-rendering: crispEdges;
+			}
+
+			.axis text {
+			    font-family: Helvetica;
+			    font-size:11px;
+				}
+
+			.test {
+				/*font-family: helvetica, sans-serif;
+				/*font-size: 15px;*/
+			/*	text-align: left;
+				margin-left:  60px;*/*/
+				float: left;
+				width: 960px;
+				text-align: center;
+				margin-left: 30px;
+			
+
+				/*margin: 0 auto;
+				display: inline;*/
+			/*	background-color: blue;*/
+
+				}
+
+
+			body {
+				margin: 0 auto;
+				font-family: helvetica;	
+			}
+
+			.graphic {
+				width: 960px;	
+		    margin-left: 55px;
+		    margin-top: 150px;
+		    height: 300px;
+
+			}
+			
+			.summer2013 {
+				color: black
+				;
+			}
+			
+			h1 {
+			  	font-size: 50px;
+			  	width: 800px;
+			margin: 0 auto;
+			}
+
+			h2 {
+			  	font-size: 23px;
+			  	margin: 20px;
+			  	display: inline;
+			}
+
+			h3 {
+			  	font-size: 21px;
+			  	font-family: cursive;
+			  	display: inline;
+			  	border-top: 1px;
+			}
+
+			h4 {
+			  	font-size: 14px;
+			  	font-family: arial;
+			  	width: 140px;
+	/*		  	padding: 30px, 0, 0, 0;*/
+				margin: 10px auto;
+
+			}
+
+			h5 {
+			  	font-size: 14px;
+			  	margin: 10px auto;
+			  	color: rgb(0, 0, 0);
+
+			}
+
+			h6 {
+			  	font-size: 14px;
+			  	margin: 10px auto;
+			  	color: rgb(0, 0, 0);
+
+			}
+/*left*/
+			h7 {
+			  	font-size: 35px;
+			  	margin-left: 0px;
+			  	margin-bottom: 0;
+			  	color: rgb(0, 0, 0);
+			  	float: left;
+
+			}
+/*right*/
+			h8 {
+			  	font-size: 35px;
+			  	margin-left: 20px;
+			  	margin-bottom: 0;
+			  	color: rgb(0, 0, 0);
+			  	float: left;
+			  	opacity: 0;
+
+			}
+
+		
+			/*#top */ul {
+				width: 500px;
+				margin: 0 auto;
+				/*background-color: blue;*/
+
+			}
+
+			.button2012 {
+				cursor: pointer;  
+				width: 40px;
+				height: 40px;
+			border:2px solid;
+			border-radius:50px;
+			background-color: rgb(150, 150, 150);
+			opacity: .5;
+			box-shadow: 2px 2px 10px #888888;
+			text-align:center;
+			float: left;
+			/*margin-left: 440px;*/
+			}
+
+					.button2013 {
+						cursor: pointer;  
+				width: 40px;
+				height: 40px;
+			border:2px solid;
+			border-radius:50px;
+			background-color: rgb(255, 0, 0);
+			opacity: 1;
+			box-shadow: 2px 2px 10px #888888;
+			text-align:center;
+			float: right;
+			/*margin-right:515px;*/
+			}
+
+			.buttons {
+				float: left;
+				width: 190px;
+				margin-left: 155px;
+				margin-top: 40px;
+				
+
+			}
+
+
+				#b12 {
+				/*width: 80px;
+				height: 80px;
+			border:2px solid;
+			border-radius:50px;
+			background-color: rgb(255, 0, 0);
+			box-shadow: 2px 2px 10px #888888;*/
+	/*		text-align:center;*/
+		/*	float: right;*/
+			margin: 20px, 0, 20px, 0;
+			}
+
+
+				#b13 {
+			/*	width: 80px;
+				height: 80px;
+			border:2px solid;
+			border-radius:50px;
+			background-color: rgb(255, 0, 0);
+			box-shadow: 2px 2px 10px #888888;
+			text-align:center;*/
+			float: right;
+			margin-right:50px;
+			}
+
+			.list   {
+				width:200px;
+				margin-top: 5px;
+				margin-left: 0px;
+			/*	float: left;*/
+				font-family: 'Titillium Web', sans-serif;
+				font-size: 14px;
+				/*list-style: none;*/
+				}
+
+			.list li  {
+				margin:0 0 0 0 ;
+				list-style: none;
+				text-align: left;
+
+				}
+
+			#keytext {
+				list-style: none;
+
+			}
+
+			#red:before {
+ 			  content: "• ";
+  			  color: red; /* or whatever color you prefer */
+}
+			#yellow:before {
+ 			  content: "• ";
+  			  color: yellow; /* or whatever color you prefer */
+  				}
+
+  				#brown:before {
+ 			  content: "• ";
+ 			  font-size: 10px;
+  			  color: brown; /* or whatever color you prefer */
+  				}
+
+			#yellow {
+
+		/*	margin-right: 50px;
+    		margin-left: 10px;*/
+			}
+	
+			#brown {
+				margin-bottom: 10px;
+		/*	margin-right: 50px;
+   			margin-left: 10px;*/
+			}
+
+			.buttontext{
+				float: left;
+				margin-left: 65px;
+				margin-bottom: 10px;
+				width: 230px;
+				font-size: 14px;
+			}
+
+			.keydiv {
+				background-color: rgb(220, 220, 220);
+				float: left;
+				margin-left: 90px;
+				margin-top: 10px;
+			}
+
+			ul {
+				margin-left: 235px;
+			}
+			
+
+				
+		</style>
+	
+	</head>
+	
+	<body>
+
+		<div class="test">
+			
+		
+				
+				<h1>A Comparison of Temperatures</h1>	
+				<ul id="top">
+				<h4>between<h4><h2>Memorial Day</h2> 
+				<h3>and</h3> 
+				<h2>Labor Day</h2>
+				</ul>	
+</div>
+<div class = "buttontext">
+<p id = "b12" class = "buttontext">Click the year button to see the difference between 2012 and 2013.</p>
+<p id = "b12" class = "buttontext">Click on the graph itself to arrange the bars fom lowerst to highest.</p>
+</div>  <!-- close button text div -->
+
+<!-- <div style="clear: both;"></div>  --> <!-- clear float? -->
+
+<div class = "buttons">
+<div class = "button2012">
+				<h5 class = "summer2012">2013</h5>
+	</div>
+	<!-- left -->
+	<h8>&#9754;</h8>
+	<!-- right -->
+	<h7>&#9755;</h7>
+<!-- 	<p id = "b13" class = "buttontext">click me</p> -->
+	<div class = "button2013">
+				<h6 class = "summer2013">2012</h6>
+		</div>	
+	</div>
+
+	<div class = "keydiv">
+	
+	<ul class = "list">
+		<li id = "keytext">KEY:</li>
+		<li id = "red" class = "key"> Above 90 degrees </li> 
+		<li id = "yellow" class = "key">Between 80 and 90 degrees</li>
+		<li id = "brown" class = "key">Below 80 degrees</li>
+	
+	</ul>
+
+ </div>  <!-- end keydiv --> 
+
+	<div class="graphic">
+	
+		<script type="text/javascript">
+
+
+			//Width and height
+			var w = 960;
+			var h = 300;
+			var barPadding = 20;
+			var yPadding = 25;
+			var xPadding = 20;
+
+	
+
+			//dataset for 2012 lab day to mem day
+			var dataset = [  91,88,82,68,67,82,86,94,84,82,82,87,91,90,80,81,84,91,93,95,90,93,91,94,85,86,89,100,90,91,103,104,103,101,101,99,99,102,103,104,105,95,91,94,91,97,95,95,96,98,99,103,100,87,95,101,104,103,104,89,94,94,99,90,103,101,91,96,97,92,96,103,92,93,83,88,86,74,79,94,90,85,86,83,87,93,98,97,96,90,83,94,96,96,99,80,78,84,93  ];
+
+			
+//set width to w - 58 to try and get the x axis to fit in better.  it was going past the edges of the graph and this was my solution to bring it back in.  then set it back to unmodified after y axis came in so it would look right.  duh.
+
+			var xxScale = d3.scale.ordinal()
+    			.domain(["Memorial Day", "Labor Day"])
+    			.rangePoints([33, w - 34]); 
+
+
+			var xScale = d3.scale.ordinal()
+				.domain(d3.range(dataset.length))
+				.rangeRoundBands([0, w ], 0.06);
+
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(dataset)])
+				.range([0, h]);
+
+			// scale for y axis to fix problem of high values being on bottom and vice versa. invert range.  
+			var yyScale = d3.scale.linear()
+				.domain([0, d3.max(dataset)])
+				.range([280, 0]);
+			
+			//create xAxis i hope
+			var xAxis = d3.svg.axis()
+                .scale(xxScale)
+                .orient("bottom")
+               
+                
+             //y axis?
+            var yAxis = d3.svg.axis()
+                .scale(yyScale)
+                .orient("left")
+                .ticks(10) 
+
+             var yAxis2 = d3.svg.axis()
+                .scale(yyScale)
+                .orient("right")
+                .ticks(10) 
+
+
+			//Create SVG element
+			var svg = d3.select(".graphic")
+				.append("svg")
+				.attr("width", w )
+				.attr("height", h);
+
+			// sets color scale variable (linear) to the max and minimum numbers int the dataset
+			var color = d3.scale.linear()
+				.domain([d3.min(dataset), d3.max(dataset)])
+				.range([10, 255]);
+
+
+			//Create bars
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return xScale(i);
+			   })
+			   .attr("y", function(d) {
+			   		return h - yScale(d);
+			   })
+			   .attr("width", xScale.rangeBand())
+			   .attr("height", function(d) {
+			   		return (yScale(d) - 20);
+			   })
+			    .style("fill", function(d) {
+			   		if (d >= 90) {
+						return "rgb(" + Math.round(color(d)) + ", " + Math.round(color(d)* .19) + ", 0)"
+					} else if (d < 90 && d >=80) {  
+						return "rgb( " + Math.round(color(d)+100) + "," + Math.round(color(d)) + ", 0)"
+					} else {
+						return "rgb( " + Math.round(color(d)+50) + "," + Math.round(color(d)* .5) + ", 0)"
+
+					}
+			   })
+
+
+
+			   .on("click", function() {
+			   		sortBars();
+			   });
+			
+			//Define sort function
+			var sortBars = function() {
+
+				svg.selectAll("rect")
+				   .sort(function(a, b) {
+					   return d3.ascending(a, b);
+				   	})
+				   .transition()
+				   .duration(1000)
+				   .attr("x", function(d, i) {
+				   		return xScale(i);
+				   });
+
+			};	
+
+			d3.select(".summer2012")
+			   	.on("click", function(){
+
+			   			d3.select(".button2013")
+			   			.transition()
+			   			.duration(750)
+			   			.style("opacity", ".5")
+     					.style("background-color", "grey")
+     				d3.select(".button2012")
+			   			.transition()
+			   			.duration(750)
+			   			.style("opacity", "1")
+     					.style("background-color", "red")
+     					;
+
+     					d3.select("h8")
+     						.transition()
+     						.duration(750)
+     						.style("opacity", "1")
+     					d3.select("h7")
+     						.transition()
+     						.duration(750)
+     						.style("opacity", "0")	
+
+			   					//do sometghing on Click
+			   		dataset = [72,80,85,83,79,74,65,73,76,73,76,74,80,79,82,94,94,84,83,86,83,83,87,87,89,93,92,89,91,90,96,90,88,83,77,82,82,85,86,88,92,91,92,95,91,85,85,82,87,89,92,94,95,96,89,84,92,89,82,83,79,76,79,73,83,79,88,79,85,78,83,88,86,80,77,84,87,80,80,75,75,76,79,82,85,88,90,91,91,93,92,94,94,93,95,99,97,92,86];
+
+
+				
+
+	   				svg.selectAll("rect")	
+	   					.data(dataset)
+			   			.transition()
+			   			.delay(function(d, i)   {
+			   				return i / dataset.length * 1800;
+			   			})
+			   			.duration(500)
+			   			.attr("y", function(d) {
+			   				return h - yScale(d);	
+			   			})
+			   			.attr("height", function(d) {
+			   				return (yScale(d) - 20);
+						})
+	   					//.attr(fill, etc. . . ) somehow shifts the color of the bar to black first- .style is seamless
+	 					.style("fill", function(d) {
+	  						if (d >= 90) {
+								return "rgb(" + Math.round(color(d)) + ", " + Math.round(color(d)* .19) + ", 0)"
+								} else if (d < 90 && d >=80) {  
+									return "rgb( " + Math.round(color(d)+100) + "," + Math.round(color(d)) + ", 0)"
+								} else {
+									return "rgb( " + Math.round(color(d)+50) + "," + Math.round(color(d)* .5) + ", 0)"
+								}
+			  			 })
+			   		});
+
+					
+
+
+			   			
+				
+		d3.select(".summer2013")
+			   	.on("click", function(){
+
+			   			d3.select(".button2013")
+			   			.transition()
+			   			.duration(750)
+			   			.style("opacity", "1")
+     					.style("background-color", "red")
+     				d3.select(".button2012")
+			   			.transition()
+			   			.duration(750)
+			   			.style("opacity", ".5")
+     					.style("background-color", "grey")
+     					;
+
+
+     					d3.select("h8")
+     						.transition()
+     						.duration(750)
+     						.style("opacity", "0")
+     					d3.select("h7")
+     						.transition()
+     						.duration(750)
+     						.style("opacity", "1")
+
+			   					//do sometghing on Click
+			   		var dataset = [  91,88,82,68,67,82,86,94,84,82,82,87,91,90,80,81,84,91,93,95,90,93,91,94,85,86,89,100,90,91,103,104,103,101,101,99,99,102,103,104,105,95,91,94,91,97,95,95,96,98,99,103,100,87,95,101,104,103,104,89,94,94,99,90,103,101,91,96,97,92,96,103,92,93,83,88,86,74,79,94,90,85,86,83,87,93,98,97,96,90,83,94,96,96,99,80,78,84,93  ];
+
+
+	   				svg.selectAll("rect")	
+	   					.data(dataset)
+			   			.transition()
+			   			.delay(function(d, i)   {
+			   				return i / dataset.length * 1800;
+			   			})
+			   			.duration(500)
+			   			.attr("y", function(d) {
+			   				return h - yScale(d);	
+			   			})
+			   			.attr("height", function(d) {
+			   				return (yScale(d) - 20);
+						})
+	   					//.attr(fill, etc. . . ) somehow shifts the color of the bar to black first- .style is seamless
+	 					.style("fill", function(d) {
+	  						if (d >= 90) {
+								return "rgb(" + Math.round(color(d)) + ", " + Math.round(color(d)* .19) + ", 0)"
+								} else if (d < 90 && d >=80) {  
+									return "rgb( " + Math.round(color(d)+100) + "," + Math.round(color(d)) + ", 0)"
+								} else {
+									return "rgb( " + Math.round(color(d)+50) + "," + Math.round(color(d)* .5) + ", 0)"
+								}
+			  			 })
+			   		});
+
+		
+			//x axis call
+			svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0," + (h - xPadding) + ")")
+    			.call(xAxis);
+
+    		//y axis call
+    		svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + (yPadding + 8) + ", 0)")
+    			.call(yAxis);
+
+    		svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + (yPadding + 901) + ", 0)")
+    			.call(yAxis2);	
+    		
+
+    		 
+		</script>
+	</div> <!--close graphic div-->
+<!-- <div class = "keydiv">
+	<ul class = "list">
+		<li id = "red" class = "key"> Above 90 degrees </li> 
+		<li id = "yellow" class = "key">Between 80 and 90 degrees</li>
+		<li id = "brown" class = "key">Below 80 degrees</li>
+	</ul>
+</div> <!- end keydiv -->
+		</div> <!--close body div-->
+	</body>
+</html>
